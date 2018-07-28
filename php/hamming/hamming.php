@@ -7,19 +7,17 @@
 
 function distance($a, $b)
 {
-    $i = 0;
-    $count = 0;
-    if(strlen($a)==strlen($b)){
-        $str_length = strlen($a);
+    if(strlen($a)!==strlen($b)) {
+        throw new \InvalidArgumentException('DNA strands must be of equal length.');
+    }
 
-        for($i; $i<$str_length; $i++){
-            if(strcmp($a[$i], $b[$i])!==0){
-                $count+=1;
-            }
+    $count = 0;
+    $str_length = strlen($a);
+    for($i=0; $i<$str_length; $i++){
+        if(strcmp($a[$i], $b[$i])!==0){
+            $count+=1;
         }
-        return $count;
     }
-    else{
-        throw new Exception('DNA strands must be of equal length.');
-    }
+
+    return $count;
 }
